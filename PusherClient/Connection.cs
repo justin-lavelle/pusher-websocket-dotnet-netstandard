@@ -90,7 +90,6 @@ namespace PusherClient
             if (this.State == ConnectionState.Connected)
             {
                 Pusher.Trace.TraceEvent(TraceEventType.Information, 0, "Sending: " + message);
-                Debug.WriteLine("Sending: " + message);
                 _websocket.Send(message);
             }
         }
@@ -124,8 +123,6 @@ namespace PusherClient
         private void websocket_MessageReceived(object sender, MessageReceivedEventArgs e)
         {
             Pusher.Trace.TraceEvent(TraceEventType.Information, 0, "Websocket message received: " + e.Message);
-
-            Debug.WriteLine(e.Message);
 
             // DeserializeAnonymousType will throw and error when an error comes back from pusher
             // It stems from the fact that the data object is a string normally except when an error is sent back
